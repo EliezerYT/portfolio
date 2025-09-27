@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simple Image Carousel</title>
+        <style>
+        body{
+            background-color: grey;
+        }
+        /* h1{
+            color:#ccc ;
+            margin-top: 10px;
+           
+        } */
+        .carousel-container {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+           border-radius: 10px;
+            margin: 200px  auto;
+            border: 2px solid #ccc;
+            position: relative;
+         -webkit-box-shadow: 20px 24px 53px -14px rgba(0,0,0,1);
+-moz-box-shadow: 20px 24px 53px -14px rgba(0,0,0,1);
+box-shadow: 20px 24px 53px -14px rgba(0,0,0,1);;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 600px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Left and Right arrows */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        <!-- <h1>Simple Image Carousel</h1> -->
+        <!-- Carousel Container -->
+        <div class="carousel-container">
+            <div class="carousel-images">
+                <img src="./img/7.avif" alt="Image 1">
+                <img src="./img/8.avif" alt="Image 2">
+                <img src="./img/6.avif" alt="Image 3">
+            </div>
+            <!-- Left and Right arrows -->
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+        <script>
+        // JavaScript for the carousel
+        let currentIndex = 0;
+
+        // Select elements
+        const images = document.querySelector('.carousel-images');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
+
+        // Move to the previous image
+        prevButton.addEventListener('click', () => {
+            if (currentIndex === 0) {
+                currentIndex = images.children.length - 1;
+            } else {
+                currentIndex--;
+            }
+            updateCarousel();
+        });
+
+        // Move to the next image
+        nextButton.addEventListener('click', () => {
+            if (currentIndex === images.children.length - 1) {
+                currentIndex = 0;
+            } else {
+                currentIndex++;
+            }
+            updateCarousel();
+            setInterval(updateCarousel, 2000)
+        });
+
+        // Function to update the carousel position
+        function updateCarousel() {
+            const offset = -currentIndex * 599; //the image width
+            images.style.transform = `translateX(${offset}px)`;
+        }
+        setInterval(updateCarousel(), 2000)
+    </script>
+    </body>
+</html>
