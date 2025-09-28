@@ -79,19 +79,19 @@ for (let i = 0; i < selectItems.length; i++) {
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
-  for (let i = 0; i < filterItems.length; i++) {
 
-    const categories = filterItems[i].dataset.category.split(" ");
+  for (let i = 0; i < filterItems.length; i++) {
 
     if (selectedValue === "all") {
       filterItems[i].classList.add("active");
-    } else if (categories.includes(selectedValue)) {
+    } else if (selectedValue === filterItems[i].dataset.category) {
       filterItems[i].classList.add("active");
     } else {
       filterItems[i].classList.remove("active");
     }
 
   }
+
 }
 
 // add event in all filter button items for large screen
@@ -144,22 +144,14 @@ const pages = document.querySelectorAll("[data-page]");
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
-    for (let j = 0; j < pages.length; j++) {
-      if (this.innerHTML.toLowerCase() === pages[j].dataset.page) {
-        pages[j].classList.add("active");
-        navigationLinks[j].classList.add("active");
+    for (let i = 0; i < pages.length; i++) {
+      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+        pages[i].classList.add("active");
+        navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
-
-        // 🔥 Resetear filtro al entrar en la página
-        filterFunc("all");
-        selectValue.innerText = "All";
-        lastClickedBtn.classList.remove("active");
-        filterBtn[0].classList.add("active");
-        lastClickedBtn = filterBtn[0];
-
       } else {
-        pages[j].classList.remove("active");
-        navigationLinks[j].classList.remove("active");
+        pages[i].classList.remove("active");
+        navigationLinks[i].classList.remove("active");
       }
     }
 

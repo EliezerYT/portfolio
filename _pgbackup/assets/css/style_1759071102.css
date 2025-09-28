@@ -334,6 +334,7 @@ main {
 }
 
 .avatar-box {
+    background: var(--bg-gradient-onyx);
     border-radius: 20px;
 }
 
@@ -1376,11 +1377,9 @@ textarea.form-input::-webkit-resizer {
 
     .avatar-box {
         border-radius: 30px;
-
-        /* hace la imagen circular */
+        
+         /* hace la imagen circular */
         object-fit: cover;
-
-        /* recorta la imagen si no es cuadrada */
         width: 120px;
     }
 
@@ -1870,6 +1869,9 @@ textarea.form-input::-webkit-resizer {
 
     .avatar-box img {
         width: 150px;
+         /* hace la imagen circular */
+        object-fit: cover;
+        width: 120px;
     }
 
     .info-content .name {
